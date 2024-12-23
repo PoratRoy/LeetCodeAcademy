@@ -29,10 +29,10 @@ int main() {
     id: 2,
     level: 1,
     title: "בדיקת תו",
-    question: `כתוב תוכנית הקולטת תו בודד ומדפיסה האם התו הוא אות גדולה, אות קטנה או ספרה.`,
-    example: `Enter a character: A
-The character is an uppercase letter`,
-    answer: `התוכנית משתמשת במשתנה מטיפוס char ובתנאי if-else מרובה לבדיקת סוג התו.`,
+    question: `כתוב תוכנית הקולטת תו מהמשתמש ומדפיסה האם התו הוא אות גדולה, אות קטנה או ספרה.`,
+    example: `קלט: 'A'
+פלט: "Upper case letter"`,
+    answer: `נשתמש במשתנה מסוג char ובתנאי if-else כדי לבדוק את טווח הערכים של התו בהתאם לטבלת ASCII.`,
     code: `#include <iostream>
 using namespace std;
 
@@ -41,15 +41,19 @@ int main() {
     cout << "Enter a character: ";
     cin >> ch;
     
-    if (ch >= 'A' && ch <= 'Z') {
-        cout << "The character is an uppercase letter";
-    } else if (ch >= 'a' && ch <= 'z') {
-        cout << "The character is a lowercase letter";
-    } else if (ch >= '0' && ch <= '9') {
-        cout << "The character is a digit";
-    } else {
-        cout << "The character is a special character";
+    if(ch >= 'A' && ch <= 'Z') {
+        cout << "Upper case letter" << endl;
     }
+    else if(ch >= 'a' && ch <= 'z') {
+        cout << "Lower case letter" << endl;
+    }
+    else if(ch >= '0' && ch <= '9') {
+        cout << "Digit" << endl;
+    }
+    else {
+        cout << "Other character" << endl;
+    }
+    
     return 0;
 }`,
   },
@@ -175,38 +179,6 @@ int main() {
   {
     id: 7,
     level: 2,
-    title: "בדיקת תו",
-    question: `כתוב תוכנית הקולטת תו מהמשתמש ומדפיסה האם התו הוא אות גדולה, אות קטנה או ספרה.`,
-    example: `קלט: 'A'
-פלט: "Upper case letter"`,
-    answer: `נשתמש במשתנה מסוג char ובתנאי if-else כדי לבדוק את טווח הערכים של התו בהתאם לטבלת ASCII.`,
-    code: `#include <iostream>
-using namespace std;
-
-int main() {
-    char ch;
-    cout << "Enter a character: ";
-    cin >> ch;
-    
-    if(ch >= 'A' && ch <= 'Z') {
-        cout << "Upper case letter" << endl;
-    }
-    else if(ch >= 'a' && ch <= 'z') {
-        cout << "Lower case letter" << endl;
-    }
-    else if(ch >= '0' && ch <= '9') {
-        cout << "Digit" << endl;
-    }
-    else {
-        cout << "Other character" << endl;
-    }
-    
-    return 0;
-}`,
-  },
-  {
-    id: 8,
-    level: 2,
     title: "לוח הכפל",
     question: `כתוב תוכנית המקבלת מספר n מהמשתמש ומדפיסה את לוח הכפל בגודל n x n.`,
     example: `קלט: 3
@@ -234,7 +206,7 @@ int main() {
 }`,
   },
   {
-    id: 9,
+    id: 8,
     level: 2,
     title: "ספירת ספרות זוגיות",
     question: `כתוב תוכנית הקולטת מהמשתמש מספר שלם חיובי. על התוכנית למצוא ולהדפיס כמה ספרות זוגיות יש במספר.`,
@@ -261,7 +233,7 @@ int main() {
 }`,
   },
   {
-    id: 10,
+    id: 9,
     level: 1,
     title: "בדיקת תו גדול/קטן",
     question: `כתוב תוכנית הקולטת תו בודד. על התוכנית לבדוק ולהדפיס האם התו הוא אות גדולה, אות קטנה או תו אחר.`,
@@ -289,7 +261,7 @@ int main() {
 }`,
   },
   {
-    id: 11,
+    id: 10,
     level: 2,
     title: "מספרים חיוביים בטווח",
     question: `כתוב תוכנית הקולטת מהמשתמש 10 מספרים שלמים. על התוכנית להדפיס כמה מהמספרים נמצאים בטווח שבין 1 ל-100 (כולל).`,
@@ -316,7 +288,7 @@ int main() {
 }`,
   },
   {
-    id: 12,
+    id: 11,
     level: 2,
     title: "בדיקת מספרים ראשוניים",
     question: `כתוב תוכנית הקולטת מספר שלם חיובי n. התוכנית תדפיס את כל המספרים הראשוניים מ-1 עד n.
@@ -348,7 +320,7 @@ int main() {
 }`,
   },
   {
-    id: 13,
+    id: 12,
     level: 2,
     title: "בדיקת טמפרטורות",
     question: `כתוב תוכנית הקולטת 10 טמפרטורות (מספרים שלמים). התוכנית תדפיס כמה טמפרטורות היו מתחת ל-0, כמה היו בין 0 ל-20 (כולל), וכמה היו מעל 20.`,
@@ -386,7 +358,7 @@ int main() {
 }`,
   },
   {
-    id: 14,
+    id: 13,
     level: 2,
     title: "ספירת תווים",
     question: `כתוב תוכנית הקולטת תו אחד ומספר שלם n. התוכנית תדפיס את התו n פעמים בסדר עולה של מספרים.`,
@@ -419,9 +391,441 @@ int main() {
 }`,
   },
   {
-    id: 5,
-    level: 1,
-    title: "",
+    id: 14,
+    level: 2,
+    title: "מחשבון ממוצע ציונים",
+    question: `כתוב תוכנית הקולטת ציונים מהמשתמש עד שהמשתמש מכניס -1. על התוכנית לחשב את ממוצע הציונים, להדפיס אותו, ולציין האם הממוצע עובר (מעל 55) או נכשל.`,
+    example: `הכנס ציון (-1 לסיום): 85
+הכנס ציון (-1 לסיום): 92
+הכנס ציון (-1 לסיום): 78
+הכנס ציון (-1 לסיום): -1
+הממוצע הוא: 85
+מצב: עובר`,
+    answer: `התוכנית משתמשת בלולאת while לקליטת ציונים, מחשבת את הסכום ומונה את מספר הציונים. לאחר מכן מחשבת ממוצע ובודקת באמצעות if-else האם עובר או נכשל.`,
+    code: `#include <iostream>
+using namespace std;
+
+int main() {
+    int grade = 0;
+    int sum = 0;
+    int count = 0;
+    float average;
+    
+    while (true) {
+        cout << "הכנס ציון (-1 לסיום): ";
+        cin >> grade;
+        
+        if (grade == -1) {
+            break;
+        }
+        
+        sum += grade;
+        count++;
+    }
+    
+    if (count > 0) {
+        average = (float)sum / count;
+        cout << "הממוצע הוא: " << average << endl;
+        
+        if (average >= 55) {
+            cout << "מצב: עובר" << endl;
+        } else {
+            cout << "מצב: נכשל" << endl;
+        }
+    }
+    
+    return 0;
+}`,
+  },
+  {
+    id: 14,
+    level: 2,
+    title: "בודק סיסמה",
+    question: `כתוב תוכנית המבקשת מהמשתמש להזין סיסמה. הסיסמה חייבת להיות באורך 6 תווים בדיוק ולהכיל לפחות ספרה אחת. על התוכנית לתת למשתמש 3 ניסיונות להזין סיסמה תקינה.`,
+    example: `נסיון 1 - הכנס סיסמה (6 תווים בדיוק): abc12
+הסיסמה קצרה מדי
+נסיון 2 - הכנס סיסמה (6 תווים בדיוק): abcdef
+חסרה ספרה בסיסמה
+נסיון 3 - הכנס סיסמה (6 תווים בדיוק): abc123
+הסיסמה תקינה!`,
+    answer: `התוכנית משתמשת בלולאת while למתן 3 ניסיונות, בודקת את אורך הסיסמה ומחפשת ספרה באמצעות לולאה נוספת. משתמשת ב-if-else לבדיקת תקינות הסיסמה.`,
+    code: `#include <iostream>
+#include <string>
+using namespace std;
+
+int main() {
+    string password;
+    int attempts = 3;
+    bool isValid = false;
+    
+    while (attempts > 0 && !isValid) {
+        cout << "נסיון " << 4-attempts << " - הכנס סיסמה (6 תווים בדיוק): ";
+        cin >> password;
+        
+        if (password.length() != 6) {
+            cout << "הסיסמה חייבת להיות באורך 6 תווים" << endl;
+        } else {
+            bool hasDigit = false;
+            for (char c : password) {
+                if (c >= '0' && c <= '9') {
+                    hasDigit = true;
+                    break;
+                }
+            }
+            
+            if (!hasDigit) {
+                cout << "חסרה ספרה בסיסמה" << endl;
+            } else {
+                cout << "הסיסמה תקינה!" << endl;
+                isValid = true;
+            }
+        }
+        
+        attempts--;
+        if (!isValid && attempts == 0) {
+            cout << "נגמרו הניסיונות" << endl;
+        }
+    }
+    
+    return 0;
+}`,
+  },
+  {
+    id: 15,
+    level: 3,
+    title: `הופכי מערך`,
+    question: `כתוב תוכנית הקולטת 10 מספרים שלמים למערך ומדפיסה אותם בסדר הפוך.`,
+    example: `הכנס 10 מספרים:
+1 2 3 4 5 6 7 8 9 10
+המערך בסדר הפוך:
+10 9 8 7 6 5 4 3 2 1`,
+    answer: `התוכנית קולטת את המספרים למערך בגודל קבוע של 10 תאים ומדפיסה אותם בלולאה שרצה מהסוף להתחלה.`,
+    code: `#include <iostream>
+using namespace std;
+
+int main() {
+    int arr[10];
+    
+    cout << "הכנס 10 מספרים:" << endl;
+    for(int i = 0; i < 10; i++) {
+        cin >> arr[i];
+    }
+    
+    cout << "המערך בסדר הפוך:" << endl;
+    for(int i = 9; i >= 0; i--) {
+        cout << arr[i] << " ";
+    }
+    
+    return 0;
+}`,
+  },
+  {
+    id: 16,
+    level: 3,
+    title: `מחפש מספר במערך`,
+    question: `כתוב תוכנית הקולטת 5 מספרים למערך ומספר לחיפוש. על התוכנית להדפיס האם המספר נמצא במערך ובאיזה מיקום.`,
+    example: `הכנס 5 מספרים:
+3 8 12 7 5
+הכנס מספר לחיפוש: 7
+המספר 7 נמצא במיקום 4`,
+    answer: `התוכנית משתמשת בלולאה לחיפוש המספר במערך ומשתמשת במשתנה בוליאני לסימון האם המספר נמצא.`,
+    code: `#include <iostream>
+using namespace std;
+
+int main() {
+    int arr[5];
+    int searchNum;
+    bool found = false;
+    
+    cout << "הכנס 5 מספרים:" << endl;
+    for(int i = 0; i < 5; i++) {
+        cin >> arr[i];
+    }
+    
+    cout << "הכנס מספר לחיפוש: ";
+    cin >> searchNum;
+    
+    for(int i = 0; i < 5; i++) {
+        if(arr[i] == searchNum) {
+            cout << "המספר " << searchNum << " נמצא במיקום " << i+1 << endl;
+            found = true;
+            break;
+        }
+    }
+    
+    if(!found) {
+        cout << "המספר לא נמצא במערך" << endl;
+    }
+    
+    return 0;
+}`,
+  },
+  {
+    id: 17,
+    level: 3,
+    title: `מונה זוגי ואי-זוגי`,
+    question: `כתוב תוכנית הקולטת 8 מספרים למערך וסופרת כמה מהם זוגיים וכמה אי-זוגיים.`,
+    example: `הכנס 8 מספרים:
+1 4 7 2 9 6 3 8
+מספרים זוגיים: 4
+מספרים אי-זוגיים: 4`,
+    answer: `התוכנית משתמשת בלולאה לבדיקת כל איבר במערך ומשתמשת באופרטור % לבדיקת זוגיות.`,
+    code: `#include <iostream>
+using namespace std;
+
+int main() {
+    int arr[8];
+    int evenCount = 0, oddCount = 0;
+    
+    cout << "הכנס 8 מספרים:" << endl;
+    for(int i = 0; i < 8; i++) {
+        cin >> arr[i];
+        if(arr[i] % 2 == 0) {
+            evenCount++;
+        } else {
+            oddCount++;
+        }
+    }
+    
+    cout << "מספרים זוגיים: " << evenCount << endl;
+    cout << "מספרים אי-זוגיים: " << oddCount << endl;
+    
+    return 0;
+}`,
+  },
+  {
+    id: 18,
+    level: 3,
+    title: `מערך עולה`,
+    question: `כתוב תוכנית הקולטת 6 מספרים למערך ובודקת האם המערך מסודר בסדר עולה.`,
+    example: `הכנס 6 מספרים:
+1 3 5 8 9 12
+המערך בסדר עולה
+
+הכנס 6 מספרים:
+1 3 2 4 5 6
+המערך אינו בסדר עולה`,
+    answer: `התוכנית משווה כל איבר עם האיבר הבא אחריו ומשתמשת במשתנה בוליאני לסימון האם המערך בסדר עולה.`,
+    code: `#include <iostream>
+using namespace std;
+
+int main() {
+    int arr[6];
+    bool isAscending = true;
+    
+    cout << "הכנס 6 מספרים:" << endl;
+    for(int i = 0; i < 6; i++) {
+        cin >> arr[i];
+    }
+    
+    for(int i = 0; i < 5; i++) {
+        if(arr[i] >= arr[i+1]) {
+            isAscending = false;
+            break;
+        }
+    }
+    
+    if(isAscending) {
+        cout << "המערך בסדר עולה" << endl;
+    } else {
+        cout << "המערך אינו בסדר עולה" << endl;
+    }
+    
+    return 0;
+}`,
+  },
+  {
+    id: 19,
+    level: 3,
+    title: `ממוצע ומקסימום`,
+    question: `כתוב תוכנית הקולטת 7 מספרים למערך, מוצאת את המספר הגדול ביותר ומחשבת את הממוצע של כל המספרים שקטנים ממנו.`,
+    example: `הכנס 7 מספרים:
+12 5 8 15 3 9 6
+המספר המקסימלי: 15
+ממוצע המספרים הקטנים מ-15: 7.17`,
+    answer: `התוכנית מוצאת את המקסימום בלולאה ראשונה, ואז בלולאה שנייה מחשבת את סכום המספרים הקטנים ממנו לצורך חישוב הממוצע.`,
+    code: `#include <iostream>
+using namespace std;
+
+int main() {
+    int arr[7];
+    int max = 0;
+    int sum = 0;
+    int count = 0;
+    
+    cout << "הכנס 7 מספרים:" << endl;
+    for(int i = 0; i < 7; i++) {
+        cin >> arr[i];
+        if(arr[i] > max) {
+            max = arr[i];
+        }
+    }
+    
+    for(int i = 0; i < 7; i++) {
+        if(arr[i] < max) {
+            sum += arr[i];
+            count++;
+        }
+    }
+    
+    cout << "המספר המקסימלי: " << max << endl;
+    if(count > 0) {
+        float average = (float)sum / count;
+        cout << "ממוצע המספרים הקטנים מ-" << max << ": " << average << endl;
+    }
+    
+    return 0;
+}`,
+  },
+  {
+    id: 20,
+    level: 3,
+    title: `מיון בועות ומציאת חציון`,
+    question: `כתוב תוכנית הקולטת 9 מספרים שלמים למערך, ממיינת אותם בסדר עולה בשיטת מיון בועות ומדפיסה את החציון (המספר האמצעי במערך הממוין).`,
+    example: `הכנס 9 מספרים:
+64 34 25 12 22 11 90 87 9
+המערך הממוין:
+9 11 12 22 25 34 64 87 90
+החציון הוא: 25`,
+    answer: `התוכנית מיישמת מיון בועות עם שתי לולאות מקוננות, כאשר בכל סיבוב מעלים את המספר הגדול למעלה. לאחר המיון, החציון נמצא במיקום האמצעי (אינדקס 4).`,
+    code: `#include <iostream>
+using namespace std;
+
+int main() {
+    int arr[9];
+    int temp;
+    
+    cout << "הכנס 9 מספרים:" << endl;
+    for(int i = 0; i < 9; i++) {
+        cin >> arr[i];
+    }
+    
+    // מיון בועות
+    for(int i = 0; i < 8; i++) {
+        for(int j = 0; j < 8-i; j++) {
+            if(arr[j] > arr[j+1]) {
+                temp = arr[j];
+                arr[j] = arr[j+1];
+                arr[j+1] = temp;
+            }
+        }
+    }
+    
+    cout << "המערך הממוין:" << endl;
+    for(int i = 0; i < 9; i++) {
+        cout << arr[i] << " ";
+    }
+    cout << endl;
+    
+    cout << "החציון הוא: " << arr[4] << endl;
+    
+    return 0;
+}`,
+  },
+  {
+    id: 21,
+    level: 4,
+    title: `מטריצה דו-מימדית ואלכסונים`,
+    question: `כתוב תוכנית הקולטת 16 מספרים למטריצה 4x4 ומחשבת את סכום האלכסון הראשי, סכום האלכסון המשני, ומדפיסה איזה מהם גדול יותר.`,
+    example: `הכנס 16 מספרים למטריצה 4x4:
+1 2 3 4
+5 6 7 8
+9 10 11 12
+13 14 15 16
+
+סכום האלכסון הראשי: 34
+סכום האלכסון המשני: 34
+האלכסונים שווים`,
+    answer: `התוכנית משתמשת במערך דו-מימדי. האלכסון הראשי הוא כאשר i=j, והאלכסון המשני הוא כאשר i+j=3.`,
+    code: `#include <iostream>
+using namespace std;
+
+int main() {
+    int matrix[4][4];
+    int mainDiagonal = 0;
+    int secondaryDiagonal = 0;
+    
+    cout << "הכנס 16 מספרים למטריצה 4x4:" << endl;
+    for(int i = 0; i < 4; i++) {
+        for(int j = 0; j < 4; j++) {
+            cin >> matrix[i][j];
+        }
+    }
+    
+    // חישוב סכום האלכסון הראשי
+    for(int i = 0; i < 4; i++) {
+        mainDiagonal += matrix[i][i];
+    }
+    
+    // חישוב סכום האלכסון המשני
+    for(int i = 0; i < 4; i++) {
+        secondaryDiagonal += matrix[i][3-i];
+    }
+    
+    cout << "סכום האלכסון הראשי: " << mainDiagonal << endl;
+    cout << "סכום האלכסון המשני: " << secondaryDiagonal << endl;
+    
+    if(mainDiagonal > secondaryDiagonal) {
+        cout << "האלכסון הראשי גדול יותר" << endl;
+    } else if(mainDiagonal < secondaryDiagonal) {
+        cout << "האלכסון המשני גדול יותר" << endl;
+    } else {
+        cout << "האלכסונים שווים" << endl;
+    }
+    
+    return 0;
+}`,
+  },
+  {
+    id: 22,
+    level: 3,
+    title: `סדרה מתכנסת`,
+    question: `כתוב תוכנית הקולטת 10 מספרים למערך ובודקת האם הם מהווים סדרה מתכנסת. סדרה מתכנסת היא סדרה שבה ההפרש בין כל שני איברים עוקבים קטן מההפרש בין שני האיברים העוקבים שלפניהם.`,
+    example: `הכנס 10 מספרים:
+100 85 75 68 64 62 61 60 59 58
+האם הסדרה מתכנסת? כן
+
+הכנס 10 מספרים:
+1 5 10 20 35 60 100 150 220 300
+האם הסדרה מתכנסת? לא`,
+    answer: `התוכנית מחשבת את ההפרשים בין כל זוג מספרים עוקבים ובודקת האם כל הפרש קטן מההפרש הקודם.`,
+    code: `#include <iostream>
+using namespace std;
+
+int main() {
+    int arr[10];
+    bool isConverging = true;
+    
+    cout << "הכנס 10 מספרים:" << endl;
+    for(int i = 0; i < 10; i++) {
+        cin >> arr[i];
+    }
+    
+    // חישוב הפרשים ובדיקת התכנסות
+    int prevDiff = abs(arr[1] - arr[0]);
+    for(int i = 1; i < 9; i++) {
+        int currentDiff = abs(arr[i+1] - arr[i]);
+        if(currentDiff >= prevDiff) {
+            isConverging = false;
+            break;
+        }
+        prevDiff = currentDiff;
+    }
+    
+    cout << "האם הסדרה מתכנסת? ";
+    if(isConverging) {
+        cout << "כן" << endl;
+    } else {
+        cout << "לא" << endl;
+    }
+    
+    return 0;
+}`,
+  },
+  {
+    id: 23,
+    level: 4,
+    title: ``,
     question: ``,
     example: ``,
     answer: ``,

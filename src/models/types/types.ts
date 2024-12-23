@@ -1,5 +1,4 @@
 export interface QuestionAnswer {
-  id: number
   level: number
   title: string
   question: string

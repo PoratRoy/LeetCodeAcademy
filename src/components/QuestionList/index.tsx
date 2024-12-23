@@ -10,8 +10,8 @@ interface QuestionListProps {
 const QuestionList: React.FC<QuestionListProps> = ({ questions }) => {
   return (
     <div className="question-list">
-      {questions.map((qa) => (
-        <QuestionItem key={qa.id} questionModel={qa} />
+      {questions.map((qa, i) => (
+        <QuestionItem key={i} questionModel={qa} />
       ))}
     </div>
   );

@@ -1,8 +1,10 @@
 export interface QuestionAnswer {
   level: number
   title: string
-  question: string
-  example?: string
-  answer: string
+  stack?: string
+  question?: string
+  example: string
+  hint?: string
+  answer?: string
   code?: string
 } 

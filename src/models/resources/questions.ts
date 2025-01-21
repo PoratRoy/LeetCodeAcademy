@@ -1447,4 +1447,711 @@ int main() {
     return 0;
 }`,
   },
+  {
+    level: 2,
+    title: "מחשבון בסיסי",
+    stack: `types int, if else, std:cin, std:cout, functions`,
+    question:
+      "כתוב תוכנית שקולטת שני מספרים שלמים ופעולה חשבונית (+, -, *, /) ומחזירה את התוצאה. במקרה של חלוקה באפס, יש להדפיס הודעת שגיאה מתאימה.",
+    example:
+      "קלט: 10 + 5\nפלט: 15\n\nקלט: 8 / 0\nפלט: שגיאה: אין אפשרות לחלק במספר 0",
+    hint: "1. חלק את הבעיה לפונקציות קטנות יותר\n2. השתמש במשתנה char לקליטת הפעולה החשבונית\n3. השתמש ב-if-else או switch לטיפול בפעולות השונות\n4. אל תשכח לבדוק מקרי קצה כמו חלוקה באפס",
+    answer:
+      "התוכנית מקבלת קלט של שני מספרים ופעולה חשבונית. היא מחלקת את הלוגיקה לפונקציה נפרדת שמבצעת את החישוב. הפונקציה בודקת את סוג הפעולה ומבצעת את החישוב המתאים. במקרה של חלוקה, היא בודקת האם המחלק הוא 0 ומטפלת במקרה זה בהתאם.",
+    code: `
+#include <iostream>
+using namespace std;
+
+// Function to perform the calculation
+int calculate(int num1, char op, int num2, bool& error) {
+    error = false;
+    switch(op) {
+        case '+':
+            return num1 + num2;
+        case '-':
+            return num1 - num2;
+        case '*':
+            return num1 * num2;
+        case '/':
+            if(num2 == 0) {
+                error = true;
+                return 0;
+            }
+            return num1 / num2;
+        default:
+            error = true;
+            return 0;
+    }
+}
+
+int main() {
+    int num1, num2;
+    char operation;
+    bool error;
+    
+    // Get input from user
+    cin >> num1 >> operation >> num2;
+    
+    // Perform calculation
+    int result = calculate(num1, operation, num2, error);
+    
+    // Print result or error message
+    if(error) {
+        cout << "שגיאה: אין אפשרות לחלק במספר 0" << endl;
+    } else {
+        cout << result << endl;
+    }
+    
+    return 0;
+}`,
+  },
+  {
+    level: 3,
+    title: "מציאת המספר הגדול ביותר",
+    stack: `types int, arrays, loops, std:cin, std:cout, functions`,
+    question:
+      "כתוב תוכנית שקולטת 10 מספרים שלמים למערך ומדפיסה את המספר הגדול ביותר ואת מיקומו במערך.",
+    example:
+      "קלט: 4 8 2 9 1 5 7 3 6 0\nפלט: המספר הגדול ביותר הוא: 9\nנמצא במיקום: 4",
+    hint: "1. השתמש במערך באורך 10\n2. השתמש בלולאה אחת לקליטת המספרים\n3. השתמש בלולאה נפרדת למציאת המקסימום\n4. שמור את האינדקס של המספר הגדול ביותר",
+    answer:
+      "התוכנית משתמשת במערך לשמירת המספרים. היא מבצעת שתי לולאות - אחת לקליטת המספרים ואחת למציאת המקסימום. בזמן החיפוש, היא שומרת גם את המיקום של המספר הגדול ביותר.",
+    code: `
+#include <iostream>
+using namespace std;
+
+// Function to find the maximum number and its position
+void findMax(int arr[], int size, int& max, int& position) {
+    max = arr[0];
+    position = 0;
+    
+    // Loop through array to find maximum
+    for(int i = 1; i < size; i++) {
+        if(arr[i] > max) {
+            max = arr[i];
+            position = i;
+        }
+    }
+}
+
+int main() {
+    const int SIZE = 10;
+    int numbers[SIZE];
+    
+    // Input numbers
+    for(int i = 0; i < SIZE; i++) {
+        cin >> numbers[i];
+    }
+    
+    // Find maximum
+    int maxNumber, maxPosition;
+    findMax(numbers, SIZE, maxNumber, maxPosition);
+    
+    // Print results
+    cout << "המספר הגדול ביותר הוא: " << maxNumber << endl;
+    cout << "נמצא במיקום: " << maxPosition + 1 << endl;
+    
+    return 0;
+}`,
+  },
+  {
+    level: 4,
+    title: "בדיקת מחרוזת פלינדרום",
+    stack: `types char, char[], loops, std:cin, std:cout, functions`,
+    question:
+      "כתוב תוכנית שקולטת מחרוזת ובודקת האם היא פלינדרום (נקראת אותו דבר מההתחלה לסוף ומהסוף להתחלה). התוכנית צריכה להתעלם מרווחים.",
+    example:
+      "קלט: אבא אבא\nפלט: המחרוזת היא פלינדרום\n\nקלט: שלום\nפלט: המחרוזת אינה פלינדרום",
+    hint: "1. הסר את כל הרווחים מהמחרוזת\n2. השתמש בשתי אינדקסים - אחד מההתחלה ואחד מהסוף\n3. השווה תווים משני הצדדים עד שנפגשים באמצע\n4. זכור שמחרוזת מסתיימת ב-'\\0'",
+    answer:
+      "התוכנית מסירה תחילה את כל הרווחים מהמחרוזת. לאחר מכן, היא משתמשת בשני מצביעים - אחד בהתחלה ואחד בסוף - ומשווה את התווים משני הצדדים. אם כל התווים זהים עד שהמצביעים נפגשים, המחרוזת היא פלינדרום.",
+    code: `
+#include <iostream>
+using namespace std;
+
+// Function to remove spaces from string
+void removeSpaces(char str[], char result[]) {
+    int j = 0;
+    for(int i = 0; str[i] != '\\0'; i++) {
+        if(str[i] != ' ') {
+            result[j] = str[i];
+            j++;
+        }
+    }
+    result[j] = '\\0';
+}
+
+// Function to check if string is palindrome
+bool isPalindrome(char str[]) {
+    char noSpaces[100];
+    removeSpaces(str, noSpaces);
+    
+    int start = 0;
+    int end = 0;
+    // Find string length
+    while(noSpaces[end] != '\\0') {
+        end++;
+    }
+    end--;
+    
+    // Check palindrome
+    while(start < end) {
+        if(noSpaces[start] != noSpaces[end]) {
+            return false;
+        }
+        start++;
+        end--;
+    }
+    return true;
+}
+
+int main() {
+    char str[100];
+    cin.getline(str, 100);
+    
+    if(isPalindrome(str)) {
+        cout << "המחרוזת היא פלינדרום" << endl;
+    } else {
+        cout << "המחרוזת אינה פלינדרום" << endl;
+    }
+    
+    return 0;
+}`,
+  },
+  {
+    level: 5,
+    title: "חישוב עצרת ברקורסיה",
+    stack: `types int, Recursion, std:cin, std:cout, functions`,
+    question:
+      "כתוב תוכנית שמחשבת עצרת של מספר בעזרת רקורסיה. התוכנית צריכה לבדוק שהקלט הוא חיובי.",
+    example: "קלט: 5\nפלט: 120\n\nקלט: -3\nפלט: שגיאה: יש להזין מספר חיובי",
+    hint: "1. הגדר מקרה בסיס (n=0 או n=1)\n2. הגדר את הנוסחה הרקורסיבית (n * (n-1)!)\n3. בדוק תקינות קלט לפני הקריאה לפונקציה הרקורסיבית\n4. זכור שעצרת מוגדרת רק למספרים אי-שליליים",
+    answer:
+      "התוכנית מקבלת מספר ובודקת שהוא חיובי. אם כן, היא מחשבת את העצרת באמצעות פונקציה רקורסיבית. הפונקציה מחזירה 1 עבור 0 או 1, ועבור כל מספר אחר מחזירה את המספר כפול העצרת של המספר הקודם.",
+    code: `
+#include <iostream>
+using namespace std;
+
+// Recursive function to calculate factorial
+int factorial(int n) {
+    // Base cases
+    if(n == 0 || n == 1) {
+        return 1;
+    }
+    
+    // Recursive case
+    return n * factorial(n - 1);
+}
+
+int main() {
+    int number;
+    cin >> number;
+    
+    // Check if input is valid
+    if(number < 0) {
+        cout << "שגיאה: יש להזין מספר חיובי" << endl;
+        return 1;
+    }
+    
+    // Calculate and print factorial
+    int result = factorial(number);
+    cout << result << endl;
+    
+    return 0;
+}`,
+  },
+  {
+    level: 4,
+    title: "סכום ספרות ברקורסיה",
+    stack: `types int, Recursion, std:cin, std:cout, functions`,
+    question:
+      "כתוב תוכנית שמקבלת מספר שלם חיובי ומחשבת את סכום הספרות שלו באמצעות רקורסיה. למשל, עבור המספר 1234, התוכנית תחזיר 10 (1+2+3+4).",
+    example: "קלט: 1234\nפלט: 10\n\nקלט: 9999\nפלט: 36",
+    hint: "1. חשוב על המקרה הבסיסי - מספר חד ספרתי\n2. בכל שלב, קח את הספרה האחרונה (n % 10)\n3. המשך רקורסיבית עם שאר המספר (n / 10)\n4. חבר את הספרה הנוכחית לתוצאת הקריאה הרקורסיבית",
+    answer:
+      "הפתרון משתמש ברקורסיה כדי לפרק את המספר לספרות בודדות. בכל שלב הוא לוקח את הספרה האחרונה (שארית החלוקה ב-10) ומוסיף אותה לסכום של שאר הספרות שמתקבל מהקריאה הרקורסיבית למספר המחולק ב-10.",
+    code: `
+#include <iostream>
+using namespace std;
+
+// Recursive function to sum digits
+int sumDigits(int n) {
+    // Base case: single digit number
+    if(n < 10) {
+        return n;
+    }
+    
+    // Get last digit and add to sum of remaining digits
+    return (n % 10) + sumDigits(n / 10);
+}
+
+int main() {
+    int number;
+    
+    // Get input
+    cin >> number;
+    
+    // Calculate and print sum
+    if(number < 0) {
+        cout << "יש להזין מספר חיובי" << endl;
+    } else {
+        cout << sumDigits(number) << endl;
+    }
+    
+    return 0;
+}`,
+  },
+  {
+    level: 4,
+    title: "הפיכת מחרוזת ברקורסיה",
+    stack: `types char, char[], Recursion, std:cin, std:cout, functions`,
+    question:
+      "כתוב תוכנית שמקבלת מחרוזת והופכת אותה באמצעות רקורסיה (למשל, 'שלום' יהפוך ל-'םולש').",
+    example: "קלט: שלום\nפלט: םולש\n\nקלט: אבג\nפלט: גבא",
+    hint: "1. המקרה הבסיסי הוא מחרוזת ריקה או באורך 1\n2. בכל שלב, קח את התו הראשון\n3. קרא רקורסיבית לשאר המחרוזת\n4. הוסף את התו הראשון בסוף התוצאה",
+    answer:
+      "התוכנית משתמשת ברקורסיה להפיכת המחרוזת. בכל שלב היא לוקחת את התו הראשון, מהפכת את שאר המחרוזת רקורסיבית, ואז מוסיפה את התו הראשון בסוף התוצאה המהופכת.",
+    code: `
+#include <iostream>
+#include <cstring>
+using namespace std;
+
+// Recursive function to reverse string
+void reverseString(char str[], int start, int end) {
+    // Base case: empty string or single character
+    if(start >= end) {
+        return;
+    }
+    
+    // Swap first and last characters
+    char temp = str[start];
+    str[start] = str[end];
+    str[end] = temp;
+    
+    // Recursively reverse remaining string
+    reverseString(str, start + 1, end - 1);
+}
+
+int main() {
+    char str[100];
+    
+    // Get input
+    cin.getline(str, 100);
+    
+    // Reverse string
+    reverseString(str, 0, strlen(str) - 1);
+    
+    // Print result
+    cout << str << endl;
+    
+    return 0;
+}`,
+  },
+  {
+    level: 4,
+    title: "סדרת פיבונאצ'י ברקורסיה",
+    stack: `types int, Recursion, std:cin, std:cout, functions`,
+    question:
+      "כתוב תוכנית שמקבלת מספר n ומדפיסה את n האיברים הראשונים בסדרת פיבונאצ'י באמצעות רקורסיה. הסדרה מתחילה ב-0, 1 וכל איבר הוא סכום שני האיברים הקודמים.",
+    example: "קלט: 6\nפלט: 0 1 1 2 3 5\n\nקלט: 8\nפלט: 0 1 1 2 3 5 8 13",
+    hint: "1. המקרים הבסיסיים הם האיברים הראשון והשני (0 ו-1)\n2. צור פונקציה שמחשבת את האיבר ה-n בסדרה\n3. השתמש בלולאה בmain כדי להדפיס את כל האיברים\n4. זכור שכל איבר הוא סכום שני קודמיו",
+    answer:
+      "הפתרון משתמש בפונקציה רקורסיבית שמחשבת את האיבר ה-n בסדרה. הפונקציה מחזירה את המספר עצמו עבור המקרים הבסיסיים (0 ו-1), ועבור כל מספר אחר מחזירה את סכום שני האיברים הקודמים בסדרה.",
+    code: `
+#include <iostream>
+using namespace std;
+
+// Recursive function to calculate nth Fibonacci number
+int fibonacci(int n) {
+    // Base cases
+    if(n <= 1) {
+        return n;
+    }
+    
+    // Recursive case: sum of previous two numbers
+    return fibonacci(n - 1) + fibonacci(n - 2);
+}
+
+int main() {
+    int n;
+    
+    // Get input
+    cin >> n;
+    
+    // Print Fibonacci sequence
+    if(n < 1) {
+        cout << "יש להזין מספר חיובי" << endl;
+    } else {
+        for(int i = 0; i < n; i++) {
+            cout << fibonacci(i);
+            if(i < n - 1) {
+                cout << " ";
+            }
+        }
+        cout << endl;
+    }
+    
+    return 0;
+}`,
+  },
+  {
+    level: 4,
+    title: "חיפוש בינארי ברקורסיה",
+    stack: `types int, arrays, Recursion, std:cin, std:cout, functions`,
+    question:
+      "כתוב תוכנית שמקבלת מערך ממוין של 10 מספרים ומספר לחיפוש. התוכנית תמצא את מיקום המספר במערך באמצעות חיפוש בינארי רקורסיבי. אם המספר לא נמצא, יש להדפיס -1.",
+    example:
+      "קלט:\n1 3 5 7 9 11 13 15 17 19\n7\nפלט: 3\n\nקלט:\n1 3 5 7 9 11 13 15 17 19\n4\nפלט: -1",
+    hint: "1. המקרה הבסיסי הוא כאשר תחום החיפוש ריק\n2. בדוק את האיבר האמצעי בכל שלב\n3. אם המספר קטן מהאמצע, חפש בחצי השמאלי\n4. אם המספר גדול מהאמצע, חפש בחצי הימני",
+    answer:
+      "התוכנית משתמשת בפונקציה רקורסיבית לחיפוש בינארי. בכל שלב היא בודקת את האיבר האמצעי - אם הוא המספר המבוקש, מחזירה את מיקומו. אחרת, ממשיכה לחפש בחצי המתאים של המערך.",
+    code: `
+#include <iostream>
+using namespace std;
+
+// Recursive binary search function
+int binarySearch(int arr[], int left, int right, int target) {
+    // Base case: element not found
+    if(left > right) {
+        return -1;
+    }
+    
+    // Calculate middle point
+    int mid = left + (right - left) / 2;
+    
+    // Check middle element
+    if(arr[mid] == target) {
+        return mid;
+    }
+    
+    // If target is smaller, search left half
+    if(arr[mid] > target) {
+        return binarySearch(arr, left, mid - 1, target);
+    }
+    
+    // If target is larger, search right half
+    return binarySearch(arr, mid + 1, right, target);
+}
+
+int main() {
+    const int SIZE = 10;
+    int arr[SIZE];
+    int target;
+    
+    // Get sorted array input
+    for(int i = 0; i < SIZE; i++) {
+        cin >> arr[i];
+    }
+    
+    // Get number to search
+    cin >> target;
+    
+    // Search and print result
+    int result = binarySearch(arr, 0, SIZE - 1, target);
+    cout << result << endl;
+    
+    return 0;
+}`,
+  },
+  {
+    level: 4,
+    title: "מציאת מחלק משותף מקסימלי ברקורסיה",
+    stack: `types int, Recursion, std:cin, std:cout, functions`,
+    question:
+      "כתוב תוכנית שמקבלת שני מספרים שלמים חיוביים ומוצאת את המחלק המשותף המקסימלי שלהם באמצעות אלגוריתם אוקלידס ברקורסיה.",
+    example: "קלט: 48 18\nפלט: 6\n\nקלט: 35 15\nפלט: 5",
+    hint: "1. השתמש באלגוריתם אוקלידס: GCD(a,b) = GCD(b, a mod b)\n2. המקרה הבסיסי הוא כאשר אחד המספרים הוא 0\n3. בכל שלב, השתמש בשארית החלוקה\n4. זכור לבדוק שהקלט חיובי",
+    answer:
+      "התוכנית משתמשת באלגוריתם אוקלידס ברקורסיה למציאת המחלק המשותף המקסימלי. האלגוריתם מבוסס על העיקרון שה-GCD של שני מספרים שווה ל-GCD של המספר השני ושארית החלוקה של הראשון בשני.",
+    code: `
+#include <iostream>
+using namespace std;
+
+// Recursive function to find GCD using Euclidean algorithm
+int findGCD(int a, int b) {
+    // Base case
+    if(b == 0) {
+        return a;
+    }
+    
+    // Recursive case
+    return findGCD(b, a % b);
+}
+
+int main() {
+    int num1, num2;
+    
+    // Get input
+    cin >> num1 >> num2;
+    
+    // Validate input
+    if(num1 <= 0 || num2 <= 0) {
+        cout << "יש להזין מספרים חיוביים בלבד" << endl;
+        return 1;
+    }
+    
+    // Calculate and print GCD
+    cout << findGCD(num1, num2) << endl;
+    
+    return 0;
+}`,
+  },
+  {
+    level: 3,
+    title: "החלפת מילים במשפט",
+    stack: `types char, char[], pointers, std:cin, std:cout, functions`,
+    question:
+      "כתוב תוכנית שמקבלת משפט (מערך של תווים), מילה להחלפה ומילה חדשה. התוכנית תחליף כל הופעה של המילה הישנה במילה החדשה. הנח שאורך המשפט המקסימלי הוא 100 תווים.",
+    example:
+      "קלט:\nהיום יום שני והשמש זורחת\nיום\nלילה\nפלט: היום לילה שני והשמש זורחת",
+    hint: "1. השתמש במצביעים למעבר על המשפט\n2. חפש את המילה להחלפה תו אחר תו\n3. כשמוצאים התאמה, בדוק שזו מילה שלמה (יש רווח או סוף משפט לפני ואחרי)\n4. השתמש במערך עזר לבניית המשפט החדש",
+    answer:
+      "התוכנית משתמשת במצביעים כדי לעבור על המשפט המקורי. כאשר היא מוצאת התאמה למילה להחלפה, היא בודקת שזו אכן מילה שלמה (שיש רווח או סוף משפט לפני ואחרי). המשפט החדש נבנה במערך עזר תוך כדי המעבר על המשפט המקורי.",
+    code: `
+#include <iostream>
+#include <cstring>
+using namespace std;
+
+// Function to check if character marks a word boundary
+bool isWordBoundary(char c) {
+    return c == ' ' || c == '\\0' || c == '\\n';
+}
+
+// Function to replace words in a sentence
+void replaceWord(char* sentence, const char* oldWord, const char* newWord) {
+    char result[100] = "";  // Buffer for new sentence
+    char* ptr = sentence;   // Pointer to traverse sentence
+    char* writePtr = result;  // Pointer for writing to result
+    
+    while (*ptr != '\\0') {
+        // Check if we found the old word
+        if (strncmp(ptr, oldWord, strlen(oldWord)) == 0 &&
+            (ptr == sentence || isWordBoundary(*(ptr-1))) &&
+            isWordBoundary(*(ptr + strlen(oldWord)))) {
+            
+            // Copy new word to result
+            strcpy(writePtr, newWord);
+            writePtr += strlen(newWord);
+            ptr += strlen(oldWord);
+        } else {
+            // Copy current character
+            *writePtr = *ptr;
+            writePtr++;
+            ptr++;
+        }
+    }
+    *writePtr = '\\0';
+    
+    // Copy result back to original sentence
+    strcpy(sentence, result);
+}
+
+int main() {
+    char sentence[100];
+    char oldWord[20];
+    char newWord[20];
+    
+    // Get input
+    cin.getline(sentence, 100);
+    cin.getline(oldWord, 20);
+    cin.getline(newWord, 20);
+    
+    // Replace words and print result
+    replaceWord(sentence, oldWord, newWord);
+    cout << sentence << endl;
+    
+    return 0;
+}`,
+  },
+  {
+    level: 4,
+    title: "מיון מערך מחרוזות",
+    stack: `types char, char[], pointers, arrays, std:cin, std:cout, functions`,
+    question:
+      "כתוב תוכנית שמקבלת 5 מחרוזות (כל אחת עד 20 תווים) וממיינת אותן לפי סדר אלפביתי. יש להשתמש במערך של מצביעים למחרוזות ובמיון בועות.",
+    example: "קלט:\nזברה\nאריה\nדב\nגמל\nחתול\nפלט:\nאריה\nגמל\nדב\nזברה\nחתול",
+    hint: "1. צור מערך של מצביעים למחרוזות\n2. השתמש במערך נפרד לאחסון המחרוזות עצמן\n3. בצע מיון בועות על המצביעים\n4. השתמש ב-strcmp להשוואת מחרוזות",
+    answer:
+      "התוכנית מקצה מערך של מחרוזות ומערך של מצביעים אליהן. היא משתמשת במיון בועות כשההשוואה נעשית באמצעות strcmp, והחלפת מחרוזות נעשית על ידי החלפת המצביעים במקום העתקת המחרוזות עצמן.",
+    code: `
+#include <iostream>
+#include <cstring>
+using namespace std;
+
+// Function to swap string pointers
+void swapStrings(char** str1, char** str2) {
+    char* temp = *str1;
+    *str1 = *str2;
+    *str2 = temp;
+}
+
+// Function to sort strings using bubble sort
+void sortStrings(char* arr[], int n) {
+    for(int i = 0; i < n-1; i++) {
+        for(int j = 0; j < n-i-1; j++) {
+            if(strcmp(arr[j], arr[j+1]) > 0) {
+                swapStrings(&arr[j], &arr[j+1]);
+            }
+        }
+    }
+}
+
+int main() {
+    const int NUM_STRINGS = 5;
+    const int MAX_LENGTH = 20;
+    
+    // Array to store actual strings
+    char strings[NUM_STRINGS][MAX_LENGTH];
+    // Array of pointers to strings
+    char* stringPtrs[NUM_STRINGS];
+    
+    // Get input strings
+    for(int i = 0; i < NUM_STRINGS; i++) {
+        cin.getline(strings[i], MAX_LENGTH);
+        stringPtrs[i] = strings[i];
+    }
+    
+    // Sort strings
+    sortStrings(stringPtrs, NUM_STRINGS);
+    
+    // Print sorted strings
+    for(int i = 0; i < NUM_STRINGS; i++) {
+        cout << stringPtrs[i] << endl;
+    }
+    
+    return 0;
+}`,
+  },
+  {
+    level: 4,
+    title: "איחוד מחרוזות ללא כפילויות",
+    stack: `types char, char[], pointers, std:cin, std:cout, functions`,
+    question:
+      "כתוב תוכנית שמקבלת שתי מחרוזות ומאחדת אותן למחרוזת אחת כך שכל תו יופיע רק פעם אחת, בסדר הופעתו הראשון. יש להשתמש במצביעים.",
+    example: "קלט:\nabcde\ncdeof\nפלט: abcdeof",
+    hint: "1. צור מערך בוליאני לסימון תווים שכבר נראו\n2. השתמש במצביעים למעבר על המחרוזות\n3. בדוק כל תו מול מערך הסימון\n4. הוסף רק תווים שטרם נראו",
+    answer:
+      "התוכנית משתמשת במערך בוליאני כדי לעקוב אחר התווים שכבר הופיעו. היא עוברת על המחרוזת הראשונה ואז השנייה באמצעות מצביעים, ומוסיפה למחרוזת התוצאה רק תווים שטרם נראו.",
+    code: `
+#include <iostream>
+using namespace std;
+
+// Function to merge strings without duplicates
+void mergeStrings(const char* str1, const char* str2, char* result) {
+    bool seen[128] = {false};  // Array to mark seen characters
+    char* writePtr = result;   // Pointer to write position in result
+    
+    // Process first string
+    const char* readPtr = str1;
+    while(*readPtr != '\\0') {
+        if(!seen[*readPtr]) {
+            seen[*readPtr] = true;
+            *writePtr = *readPtr;
+            writePtr++;
+        }
+        readPtr++;
+    }
+    
+    // Process second string
+    readPtr = str2;
+    while(*readPtr != '\\0') {
+        if(!seen[*readPtr]) {
+            seen[*readPtr] = true;
+            *writePtr = *readPtr;
+            writePtr++;
+        }
+        readPtr++;
+    }
+    
+    // Add null terminator
+    *writePtr = '\\0';
+}
+
+int main() {
+    char str1[50];
+    char str2[50];
+    char result[100];
+    
+    // Get input
+    cin.getline(str1, 50);
+    cin.getline(str2, 50);
+    
+    // Merge strings and print result
+    mergeStrings(str1, str2, result);
+    cout << result << endl;
+    
+    return 0;
+}`,
+  },
+  {
+    level: 5,
+    title: "חיפוש תת-מחרוזת מקסימלית משותפת",
+    stack: `types char, char[], pointers, arrays, std:cin, std:cout, functions`,
+    question:
+      "כתוב תוכנית שמקבלת שתי מחרוזות ומוצאת את תת-המחרוזת המשותפת הארוכה ביותר ביניהן. יש להשתמש במצביעים ובמטריצה דו-ממדית.",
+    example: "קלט:\nabcdef\ndefabc\nפלט: def",
+    hint: "1. צור מטריצה דו-ממדית לשמירת אורכי תת-המחרוזות המשותפות\n2. מלא את המטריצה בעזרת מצביעים\n3. מצא את המיקום והאורך המקסימלי במטריצה\n4. השתמש במצביעים לחילוץ תת-המחרוזת",
+    answer:
+      "התוכנית משתמשת בטכניקת תכנות דינמי עם מטריצה דו-ממדית. היא ממלאת את המטריצה כך שכל תא מכיל את אורך תת-המחרוזת המשותפת המקסימלית המסתיימת בתווים המתאימים. לאחר מכן היא מוצאת את הערך המקסימלי במטריצה ומחלצת את תת-המחרוזת המתאימה.",
+    code: `
+#include <iostream>
+#include <cstring>
+using namespace std;
+
+// Function to find longest common substring
+void findLongestCommonSubstring(const char* str1, const char* str2, char* result) {
+    int len1 = strlen(str1);
+    int len2 = strlen(str2);
+    
+    // Create 2D array for lengths
+    int** lengths = new int*[len1 + 1];
+    for(int i = 0; i <= len1; i++) {
+        lengths[i] = new int[len2 + 1]();
+    }
+    
+    // Variables to track maximum length and ending position
+    int maxLength = 0;
+    int endIndex = 0;
+    
+    // Fill the matrix
+    for(int i = 1; i <= len1; i++) {
+        for(int j = 1; j <= len2; j++) {
+            if(str1[i-1] == str2[j-1]) {
+                lengths[i][j] = lengths[i-1][j-1] + 1;
+                if(lengths[i][j] > maxLength) {
+                    maxLength = lengths[i][j];
+                    endIndex = i - 1;
+                }
+            }
+        }
+    }
+    
+    // Extract the substring
+    const char* start = str1 + endIndex - maxLength + 1;
+    strncpy(result, start, maxLength);
+    result[maxLength] = '\\0';
+    
+    // Clean up
+    for(int i = 0; i <= len1; i++) {
+        delete[] lengths[i];
+    }
+    delete[] lengths;
+}
+
+int main() {
+    char str1[100];
+    char str2[100];
+    char result[100];
+    
+    // Get input
+    cin.getline(str1, 100);
+    cin.getline(str2, 100);
+    
+    // Find and print longest common substring
+    findLongestCommonSubstring(str1, str2, result);
+    cout << result << endl;
+    
+    return 0;
+}`,
+  },
 ];

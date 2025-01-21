@@ -8,6 +8,7 @@ const Home: React.FC = () => {
     <main className="main-container">
       <div className="content-wrapper">
         <h1 className="app-title">LeetCodeAcademy</h1>
+        <div style={{ textAlign: 'center', marginBottom: '1rem' }}>מותאם למחשב</div>
         <QuestionList questions={Questions} />
       </div>
     </main>
